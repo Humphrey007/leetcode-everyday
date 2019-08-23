@@ -9,3 +9,13 @@ class Solution:
             if target-nums[i] in hashtable:
                 if hashtable[target-nums[i]]!=i:
                     return [i,hashtable[target-nums[i]]]
+#edition 2
+#decrease the loop
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        hash_table={}
+        for i in range(len(nums)):
+            number=target-nums[i]
+            if number in hash_table:
+                return [hash_table[number],i]
+            hash_table[nums[i]]=i
