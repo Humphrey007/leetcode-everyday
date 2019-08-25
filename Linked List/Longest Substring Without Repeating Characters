@@ -1,0 +1,21 @@
+#edition 1 
+# just use the loop, it costs too much time and memory
+# the most simple one
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        if len(s)==1:
+            return 1
+        if s=="":
+            return 0
+        
+        count=0
+        for i in range(len(s)):
+            ans=1
+            for j in range(i+1,len(s)):
+                if s[j] not in s[i:j]:
+                    ans+=1 
+                else:
+                    break
+            if ans > count:
+                count=ans
+        return count
