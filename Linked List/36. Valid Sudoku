@@ -1,0 +1,45 @@
+# most complex method, three loops in row, col, sub_box
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        if board ==[[".",".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".",".","."]]:
+            return True
+        
+        def valid(x):
+            count=0
+            x1=[]
+            for m in x:
+                if m!=".":
+                    x1.append(int(m))
+            x2 = list(set(x1))
+            if x2:
+                minnumber = min(x2)
+                maxnumber = max(x2)
+                if len(x2)==len(x1) and minnumber >=1 and maxnumber <= 9:
+                    count = count+1
+                else:
+                    count = count+0
+            else:
+                count = count+1
+            return count
+        
+        count_row=0
+        count_col=0
+        count_sub=0
+        
+        for i in range(9):
+            count_row += valid(board[i])
+            
+        for m in range(9):
+            col = [c[m] for c in board]
+            count_col += valid(col)
+        
+        for i in [0,3,6]:
+            for j in [0,3,6]:
+                block = [board[s][t] for s in [i, i+1, i+2] for t in [j, j+1, j+2]]
+                count_sub += valid(block)
+                
+        if count_row==9 and count_col==9 and count_sub==9:
+            return True
+        else:
+            return False
+         
