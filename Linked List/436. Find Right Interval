@@ -27,8 +27,8 @@ class Solution:
             g.append(j[0])
         return g
   
-  
-  class Solution(object):
+ 
+class Solution(object):
     def findRightInterval(self, intervals):
         """
         :type intervals: List[List[int]]
@@ -53,6 +53,9 @@ class Solution:
                         l = m
                 res.append(ns[r][1])
         return res
+            
+            
+        
             
             
         
