@@ -1,0 +1,29 @@
+#method Time Limit Exceeded!!!
+class Solution:
+    def findRightInterval(self, intervals: List[List[int]]) -> List[int]:
+        if len(intervals)==1:return [-1]
+        start=[]
+        i=0
+        for n in intervals:
+            start.append([n[0],n[len(n)-1],i])
+            i=i+1
+        start = sorted(start, key=lambda x:x[0])
+        length=len(start)
+        ans=[]
+        
+        for i in range(length-1):
+            ggg=0
+            for j in range(i+1,length):
+                if start[j][0] >= start[i][1]:
+                    ans.append([start[j][2],start[i][2]])
+                    ggg+=1
+                    break
+            if ggg==0:ans.append([-1,start[i][2]]) 
+        ans.append([-1,start[length-1][2]])
+        ans = sorted(ans, key=lambda x : x[1])
+        
+        g=[]
+        for j in ans:
+            g.append(j[0])
+        return g
+                    
